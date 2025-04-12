@@ -1,10 +1,10 @@
-version: '3.8'
+
 
 services:
   energydrinks-db:
     build:
-      context: ./EnergyDrinksDB  # Adjusted build context
-      dockerfile: Dockerfile   # Dockerfile for the database
+      context: ./EnergyDrinksDB  # Make sure this directory exists with the DB Dockerfile
+      dockerfile: Dockerfile
     container_name: energydrinks-db
     environment:
       ACCEPT_EULA: "Y"
@@ -15,29 +15,30 @@ services:
       - "1400:1433"  
     volumes:
       - db_data:/var/opt/mssql
-      - ./logs:/var/opt/mssql/log  # Optional: To access logs
-    restart: always  # Automatically restart on failure
+      - ./logs:/var/opt/mssql/log
+    restart: always
     networks:
-      - Task4Docker-network
+      - task4docker-network
+    # No need to duplicate the health check as it's already in the Dockerfile
 
   mvc-app:
     build:
-      context: ./Task4DockerMVC               # Root context to ensure file accessibility
-      dockerfile: ./Task4DockerMVC/Dockerfile  # Path to API Dockerfile
+      context: .                           # Changed to root context
+      dockerfile: Task4DockerMVC/Dockerfile
     container_name: mvc-app
     environment:
       SQL_CONNECTION_STRING: "Server=energydrinks-db;Database=Conference;Trusted_Connection=false;MultipleActiveResultSets=true;Encrypt=false;user id=sa;password=Password1!"
     ports:
       - "8080:8080"
     depends_on:
-      conference-db:
+      energydrinks-db:
         condition: service_healthy
     networks:
-      - conference-network
+      - task4docker-network
 
 networks:
-  conference-network:
-    driver: Task4Docker-network
+  task4docker-network:
+    driver: bridge
 
 volumes:
   db_data:
