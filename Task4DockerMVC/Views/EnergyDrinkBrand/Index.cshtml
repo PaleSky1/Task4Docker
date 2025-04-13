@@ -1,0 +1,21 @@
+@model IEnumerable<Task4DockerMVC.Models.EnergyDrinkBrand>
+
+    <h2>Brands</h2>
+    <a asp-action="Create" class="btn btn-primary">Add New Brand</a>
+    <table class="table table-bordered mt-3">
+        <tr>
+            <th>Brand Name</th>
+            <th>Actions</th>
+        </tr>
+        @foreach (var brand in Model)
+{
+        <tr>
+            <td>@brand.BrandName</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@brand.BrandID">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@brand.BrandID">Delete</a>
+            </td>
+        </tr>
+}
+    </table>
+

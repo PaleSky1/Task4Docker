@@ -17,17 +17,14 @@ namespace Task4DockerMVC.Models
         public string Flavour { get; set; }
 
         [Required]
-        [StringLength(50)] // Maximum 50 characters for lastname
         public int VolumeML { get; set; }
 
         [Required]
-        [StringLength(50)] // Maximum 50 characters for lastname
         public decimal Price { get; set; }
 
         [Required]
-        [ForeignKey("EnergyDrinkbrand")]
+        [ForeignKey(nameof(EnergyDrinkBrand))]
         public int BrandID { get; set; }
-
 
         [Required]
         public DateTime DeliveryDateTime { get; set; }

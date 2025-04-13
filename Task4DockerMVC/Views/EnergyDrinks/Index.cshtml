@@ -1,0 +1,38 @@
+@model IEnumerable<Task4DockerMVC.Models.EnergyDrinks>
+
+@{
+    ViewData["Title"] = "Energy Drinks List";
+}
+
+<h2>Energy Drinks</h2>
+
+<a class="btn btn-primary" href="/EnergyDrinks/Create">Add New Drink</a>
+
+<table class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            <th>Brand</th>
+            <th>Flavour</th>
+            <th>Volume (ml)</th>
+            <th>Price</th>
+            <th>Delivery Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var drink in Model)
+        {
+            <tr>
+                <td>@drink.Brand</td>
+                <td>@drink.Flavour</td>
+                <td>@drink.VolumeML</td>
+                <td>@drink.Price</td>
+                <td>@drink.DeliveryDateTime.ToString("yyyy-MM-dd")</td>
+                <td>
+                    <a href="/EnergyDrinks/Edit/@drink.EnergyDrinksID" class="btn btn-sm btn-warning">Edit</a>
+                    <a href="/EnergyDrinks/Delete/@drink.EnergyDrinksID" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

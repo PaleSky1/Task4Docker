@@ -13,11 +13,11 @@ namespace Task4DockerMVC.Models
         public string StoreName { get; set; }
 
         [Required]
-        [ForeignKey("EnergyDrinkbrand")]
+        [ForeignKey(nameof(EnergyDrinkBrand))]
         public int BrandID { get; set; }
 
         [Required]
-        [ForeignKey("EnergyDrinks")]
+        [ForeignKey(nameof(EnergyDrinks))]
         public int EnergyDrinkID { get; set; }
 
         //Navigation properties for relationships
