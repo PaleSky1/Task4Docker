@@ -77,4 +77,4 @@ SELECT
 FROM Store s
 JOIN EnergyDrink d ON d.Name = 'Monster Ultra Blue'
 WHERE s.StoreName = 'Spar';
-GO
+GO 
