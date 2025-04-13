@@ -25,7 +25,7 @@ HEALTHCHECK --interval=10s --timeout=5s --start-period=30s --retries=5 \
 
 # Command to start SQL Server and execute the initialization script safely
 CMD /bin/bash -c "/opt/mssql/bin/sqlservr & sleep 45 && \
-  if /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P $MSSQL_SA_PASSWORD -Q 'SELECT name FROM sys.databases WHERE name = \"Conference\"' | grep -q Conference; then \
+  if /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P $MSSQL_SA_PASSWORD -Q 'SELECT name FROM sys.databases WHERE name = \"EnergyDrinks\"' | grep -q EnergyDrinks; then \
     echo 'Database already exists, skipping initialization'; \
   else \
     echo 'Initializing database'; \
