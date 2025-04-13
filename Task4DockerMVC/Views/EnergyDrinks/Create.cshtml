@@ -1,0 +1,42 @@
+@model Task4DockerMVC.Models.EnergyDrinks
+
+@{
+    ViewData["Title"] = "Create Energy Drink";
+}
+
+<h2>Add New Energy Drink</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label>Brand</label>
+        <input asp-for="Brand" class="form-control" />
+        <span asp-validation-for="Brand" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Flavour</label>
+        <input asp-for="Flavour" class="form-control" />
+        <span asp-validation-for="Flavour" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Volume (ml)</label>
+        <input asp-for="VolumeML" type="number" class="form-control" />
+        <span asp-validation-for="VolumeML" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Price</label>
+        <input asp-for="Price" type="number" step="0.01" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Brand ID</label>
+        <input asp-for="BrandID" type="number" class="form-control" />
+        <span asp-validation-for="BrandID" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Delivery Date</label>
+        <input asp-for="DeliveryDateTime" type="date" class="form-control" />
+        <span asp-validation-for="DeliveryDateTime" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-success">Create</button>
+</form>
+

@@ -1,0 +1,13 @@
+@model Task4DockerMVC.Models.EnergyDrinkBrand
+
+<h2>Create Brand</h2>
+
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="BrandName" class="control-label"></label>
+        <input asp-for="BrandName" class="form-control" />
+        <span asp-validation-for="BrandName" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-success">Create</button>
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+</form>
