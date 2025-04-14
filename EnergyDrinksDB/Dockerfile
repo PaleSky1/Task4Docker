@@ -11,6 +11,9 @@ ENV MSSQL_SA_PASSWORD=Password1!
 USER root
 RUN mkdir -p /app/init-scripts
 
+# Copy the initialization script to the container
+COPY init-database.sql /app/init-scripts/
+
 # Install necessary tools
 RUN apt-get update && apt-get install -y mssql-tools unixodbc-dev && apt-get clean
 
@@ -30,4 +33,4 @@ CMD /bin/bash -c "/opt/mssql/bin/sqlservr & sleep 45 && \
   else \
     echo 'Initializing database'; \
     /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P $MSSQL_SA_PASSWORD -d master -i /app/init-scripts/init-database.sql; \
-  fi && wait
+  fi && wait"

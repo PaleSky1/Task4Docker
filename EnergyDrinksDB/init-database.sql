@@ -1,4 +1,5 @@
 ﻿USE master;
+GO
 
 -- Create the EnergyDrinks database only if it does not already exist
 IF NOT EXISTS (SELECT name FROM sys.databases WHERE name = 'EnergyDrinks')
