@@ -30,4 +30,4 @@ CMD /bin/bash -c "/opt/mssql/bin/sqlservr & sleep 45 && \
   else \
     echo 'Initializing database'; \
     /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P $MSSQL_SA_PASSWORD -d master -i /app/init-scripts/init-database.sql; \
-  fi && wait
+  fi && wait"
