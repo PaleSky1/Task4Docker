@@ -6,7 +6,8 @@ USER $APP_UID
 WORKDIR /app
 EXPOSE 8080
 EXPOSE 8081
-
+# Enviroment Variable for connection string
+ENV SQL_CONNECTION_STRING="Server=host.docker.internal,1400;Database=EnergyDrinks;Trusted_Connection=false;MultipleActiveResultSets=true;Encrypt=false;user id=sa;password=Password1!;"
 
 # This stage is used to build the service project
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build

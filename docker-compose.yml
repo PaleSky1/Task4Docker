@@ -1,0 +1,44 @@
+
+
+services:
+  energydrinks-db:
+    build:
+      context: ./EnergyDrinksDB  # Make sure this directory exists with the DB Dockerfile
+      dockerfile: Dockerfile
+    container_name: energydrinks-db
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "Password1!"
+      MSSQL_PID: "Express"
+    ports:
+      - "1433:1433"
+      - "1400:1433"  
+    volumes:
+      - db_data:/var/opt/mssql
+      - ./logs:/var/opt/mssql/log
+    restart: always
+    networks:
+      - task4docker-network
+    # No need to duplicate the health check as it's already in the Dockerfile
+
+  mvc-app:
+    build:
+      context: .                           # Changed to root context
+      dockerfile: Task4DockerMVC/Dockerfile
+    container_name: mvc-app
+    environment:
+      SQL_CONNECTION_STRING: "Server=energydrinks-db;Database=EnergyDrinks;Trusted_Connection=false;MultipleActiveResultSets=true;Encrypt=false;user id=sa;password=Password1!"
+    ports:
+      - "8080:8080"
+    depends_on:
+      energydrinks-db:
+        condition: service_healthy
+    networks:
+      - task4docker-network
+
+networks:
+  task4docker-network:
+    driver: bridge
+
+volumes:
+  db_data:
