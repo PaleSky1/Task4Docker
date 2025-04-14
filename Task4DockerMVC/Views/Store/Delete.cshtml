@@ -1,0 +1,10 @@
+@model IEnumerable<Task4DockerMVC.Models.EnergyDrinkBrand>
+
+<h2>Energy Drink Brands</h2>
+
+<ul>
+    @foreach (var brand in Model)
+    {
+        <li>@brand.BrandName</li>
+    }
+</ul>
